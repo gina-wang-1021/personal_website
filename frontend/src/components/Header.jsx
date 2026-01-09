@@ -3,7 +3,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShareIcon from "@mui/icons-material/Share";
 
-function Header() {
+// TODO: implement menu and share button drop down and implement navigation
+
+function Header({ githubLink, linkedinLink }) {
   return (
     <Box
       display="flex"

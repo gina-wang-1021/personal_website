@@ -1,7 +1,18 @@
-import Box from "@mui/material/Box";
+import { Typography, Chip, Card, CardMedia } from "@mui/material";
+import photo from "../../assets/photo.png";
 
-function ProjectCard() {
-  return <Box>Project Card</Box>;
+function ProjectCard({ exp }) {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia sx={{ height: 140 }} image={photo} title="photo" />
+      <Typography>Title</Typography>
+      <Typography>company</Typography>
+      <Typography>date</Typography>
+      <Typography>description</Typography>
+      <Typography>website link</Typography>
+      <Chip label="Skill" />
+    </Card>
+  );
 }
 
 export default ProjectCard;
