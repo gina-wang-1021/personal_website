@@ -1,3 +1,3 @@
-# Description
+### My Peronsal Website!
 
-My personal website! Built with React and Supabase :)
+This is the Github repository for my peronsal website. Built with React, MUI, and Supabase - coming soon!
