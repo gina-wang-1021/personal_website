@@ -3,13 +3,14 @@ import {
   Chip,
   Card,
   CardMedia,
-  Box,
   CardContent,
+  Box,
   Stack,
+  IconButton,
 } from "@mui/material";
-import BusinessIcon from "@mui/icons-material/Business";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { formatDates, parseSkills } from "../../helpers/preprocessing.js";
+import { parseSkills } from "../../helpers/preprocessing.js";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LanguageIcon from "@mui/icons-material/Language";
 
 const CARD_BG = "#b8c6d3";
 const CHIP_BG = "#2f3f57";
@@ -18,14 +19,12 @@ const DARK_FONT2 = "#32425D";
 const LIGHT_FONT = "#E2E9F0";
 const LIGHT_FONT2 = "#A8B6C6";
 
-function ExperienceCard({ exp }) {
+function ProjectCard({ exp }) {
   const {
-    position,
-    company,
-    start_date,
-    end_date,
+    project_name,
     description,
     website_link,
+    github_link,
     image_link,
     skills,
   } = exp;
@@ -83,43 +82,8 @@ function ExperienceCard({ exp }) {
       >
         <Stack spacing={1.5}>
           <Typography variant="h5" fontWeight={600} color="inherit">
-            {position}
+            {project_name}
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <BusinessIcon fontSize="small" />
-            <Typography
-              component="a"
-              href={website_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                textDecoration: "none",
-                color: "inherit",
-                cursor: "pointer",
-
-                "&:hover": {
-                  textDecoration: "underline",
-                  textDecorationColor: "currentColor",
-                },
-              }}
-              variant="body1"
-              className="secondary-text"
-            >
-              {company}
-            </Typography>
-          </Stack>
-
-          <Stack direction="row" spacing={1} alignItems="center">
-            <CalendarMonthIcon fontSize="small" />
-            <Typography
-              variant="body1"
-              color={DARK_FONT2}
-              className="secondary-text"
-            >
-              {formatDates(start_date, end_date)}
-            </Typography>
-          </Stack>
-
           <Typography
             variant="body1"
             sx={{ lineHeight: 1.6, fontWeight: 500 }}
@@ -127,8 +91,42 @@ function ExperienceCard({ exp }) {
           >
             {description}
           </Typography>
+          <Stack direction="row">
+            {website_link && (
+              <IconButton
+                component="a"
+                href={website_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "inherit",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <LanguageIcon fontSize="medium" />
+              </IconButton>
+            )}
+            {github_link && (
+              <IconButton
+                component="a"
+                href={github_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "inherit",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <GitHubIcon fontSize="medium" />
+              </IconButton>
+            )}
+          </Stack>
 
-          <Stack direction="row" spacing={1} flexWrap="wrap" rowGap={0.5}>
+          <Stack direction="row" columnGap={1} flexWrap="wrap" rowGap={0.5}>
             {skills_arr.map((skill) => (
               <Chip
                 key={skill}
@@ -146,4 +144,4 @@ function ExperienceCard({ exp }) {
   );
 }
 
-export default ExperienceCard;
+export default ProjectCard;
