@@ -6,11 +6,9 @@ import {
   Box,
   CardContent,
   Stack,
-  Link,
 } from "@mui/material";
 import BusinessIcon from "@mui/icons-material/Business";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import LaunchIcon from "@mui/icons-material/Launch";
 import { formatDates, parseSkills } from "../../helpers/preprocessing.js";
 
 const CARD_BG = "#b8c6d3";
@@ -33,8 +31,6 @@ function ExperienceCard({ exp }) {
   } = exp;
 
   const skills_arr = parseSkills(skills);
-
-  // address the line changing issue
 
   return (
     <Card
@@ -59,10 +55,16 @@ function ExperienceCard({ exp }) {
         },
       }}
     >
-      <Box p={2}>
+      <Box
+        sx={{
+          px: 3,
+          pb: 1,
+          pt: 3,
+        }}
+      >
         <CardMedia
           sx={{
-            height: 160,
+            height: 250,
             borderRadius: 3,
             objectFit: "cover",
             backgroundColor: "white",
@@ -72,7 +74,13 @@ function ExperienceCard({ exp }) {
           title="photo"
         />
       </Box>
-      <CardContent sx={{ pt: 0 }}>
+      <CardContent
+        sx={{
+          px: 3,
+          pb: 3,
+          pt: 1,
+        }}
+      >
         <Stack spacing={1.5}>
           <Typography variant="h5" fontWeight={600} color="inherit">
             {position}
@@ -80,8 +88,21 @@ function ExperienceCard({ exp }) {
           <Stack direction="row" spacing={1} alignItems="center">
             <BusinessIcon fontSize="small" />
             <Typography
+              component="a"
+              href={website_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+
+                "&:hover": {
+                  textDecoration: "underline",
+                  textDecorationColor: "currentColor",
+                },
+              }}
               variant="body1"
-              color={DARK_FONT2}
               className="secondary-text"
             >
               {company}
@@ -106,19 +127,6 @@ function ExperienceCard({ exp }) {
           >
             {description}
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <LaunchIcon fontSize="small" />
-            <Link
-              href={website_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="hover"
-              color={DARK_FONT2}
-              className="secondary-text"
-            >
-              Visit Website
-            </Link>
-          </Stack>
 
           <Stack direction="row" spacing={1} flexWrap="wrap" rowGap={0.5}>
             {skills_arr.map((skill) => (

@@ -17,7 +17,7 @@ function SectionBar({ sections, sectionRefs }) {
           key={section.id}
           onClick={() => scrollToSection(section.id)}
           sx={{
-            fontSize: "1.7rem",
+            fontSize: "1.6rem",
             color: "#32425D",
             backgroundColor: "transparent",
             "&:hover": {

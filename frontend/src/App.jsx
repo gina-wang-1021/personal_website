@@ -38,6 +38,7 @@ const theme = createTheme({
     h5: {
       fontFamily: "Neuton, serif",
       fontWeight: 600,
+      fontSize: "1.6rem",
     },
     h6: {
       fontFamily: "Neuton, serif",
@@ -124,7 +125,7 @@ function App() {
     loadData();
   }, []);
 
-  if (loading) return null; // return null for now but ideally add loading component
+  if (loading) return null;
 
   return (
     <ThemeProvider theme={theme}>

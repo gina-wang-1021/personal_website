@@ -13,6 +13,7 @@ function ButtonSection({ github_link, linkedin_link }) {
           component="a"
           href={linkedin_link}
           target="_blank"
+          rel="noopener noreferrer"
           sx={{
             "&:hover": {
               color: "#111B2B",
@@ -28,6 +29,7 @@ function ButtonSection({ github_link, linkedin_link }) {
           component="a"
           href={github_link}
           target="_blank"
+          rel="noopener noreferrer"
           sx={{
             "&:hover": {
               color: "#111B2B",
