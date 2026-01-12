@@ -64,10 +64,11 @@ function ExperienceCard({ exp }) {
       >
         <CardMedia
           sx={{
-            height: 250,
-            borderRadius: 3,
+            aspectRatio: "16 / 9",
+            width: "100%",
             objectFit: "cover",
-            backgroundColor: "white",
+            borderRadius: 3,
+            background: "white",
           }}
           component="img"
           image={image_link}

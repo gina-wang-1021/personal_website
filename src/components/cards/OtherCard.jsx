@@ -50,29 +50,31 @@ function OtherCard({ exp }) {
           >
             {description}
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <LanguageIcon fontSize="small" />
-            <Link
-              href={website_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="hover"
-              color={DARK_FONT2}
-              className="secondary-text"
-              sx={{
-                textDecoration: "none",
-                color: "inherit",
-                cursor: "pointer",
+          {website_link && (
+            <Stack direction="row" spacing={1} alignItems="center">
+              <LanguageIcon fontSize="small" />
+              <Link
+                href={website_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="hover"
+                color={DARK_FONT2}
+                className="secondary-text"
+                sx={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  cursor: "pointer",
 
-                "&:hover": {
-                  textDecoration: "underline",
-                  textDecorationColor: "currentColor",
-                },
-              }}
-            >
-              Visit Website
-            </Link>
-          </Stack>
+                  "&:hover": {
+                    textDecoration: "underline",
+                    textDecorationColor: "currentColor",
+                  },
+                }}
+              >
+                Visit Website
+              </Link>
+            </Stack>
+          )}
         </Stack>
       </CardContent>
     </Card>
