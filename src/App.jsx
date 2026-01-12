@@ -81,6 +81,7 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [otherExp, setOtherExp] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState(null);
 
   const sectionRefs = {
     tech_work: useRef(null),
@@ -105,6 +106,33 @@ function App() {
       data: otherExp,
     },
   ];
+
+  useEffect(() => {
+    setActiveSection("tech_work");
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.dataset.sectionId);
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    Object.entries(sectionRefs).forEach(([id, ref]) => {
+      if (ref.current) {
+        ref.current.dataset.sectionId = id;
+        observer.observe(ref.current);
+      }
+    });
+    return () => observer.disconnect();
+  });
 
   useEffect(() => {
     async function loadData() {
@@ -135,7 +163,11 @@ function App() {
         linkedinLink={metadata.linkedin_link}
       />
       <Intro title={metadata.title} bio={metadata.bio} />
-      <SectionBar sections={sections} sectionRefs={sectionRefs} />
+      <SectionBar
+        sections={sections}
+        sectionRefs={sectionRefs}
+        activeSection={activeSection}
+      />
       {sections.map((section) => (
         <Box
           key={section.id + "_section"}

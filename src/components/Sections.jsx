@@ -22,26 +22,33 @@ const icons = {
 };
 
 const MotionGrid = motion(Grid);
-const MotionBox = motion(Box);
+const MotionStack = motion(Stack);
 
 function Sections({ content }) {
   const MyCard = cards[content.id];
   const MyIcon = icons[content.id];
 
   return (
-    <MotionBox
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, amount: 0.15 }}
-      variants={sectionReveal}
-      sx={{ px: 5, py: 4 }}
-    >
-      <Stack direction="row" pt={1} pb={2} alignItems="center" spacing={1}>
+    <Box sx={{ px: 5, py: 4 }}>
+      <MotionStack
+        direction="row"
+        pt={1}
+        pb={2}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.8 }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+        }}
+        alignItems="center"
+        spacing={1}
+      >
         <MyIcon fontSize="medium" />
         <Typography variant="h4" fontWeight={600} color="inherit">
           {content.title}
         </Typography>
-      </Stack>
+      </MotionStack>
       <Grid container spacing={3}>
         {content.data.map((item, index) => (
           <MotionGrid
@@ -60,7 +67,7 @@ function Sections({ content }) {
           </MotionGrid>
         ))}
       </Grid>
-    </MotionBox>
+    </Box>
   );
 }
 
