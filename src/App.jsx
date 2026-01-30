@@ -127,6 +127,13 @@ function App() {
     other: useRef(null),
   };
 
+  // Track intersection ratios for ALL sections, not just callback entries
+  const intersectionRatios = useRef({
+    tech_work: 0,
+    projects: 0,
+    other: 0,
+  });
+
   const sections = [
     {
       id: "tech_work",
@@ -150,16 +157,59 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const sectionIds = Object.keys(sectionRefs);
+
     const observer = new IntersectionObserver(
       (entries) => {
+        // Update stored ratios for entries that changed
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.dataset.sectionId);
+          const id = entry.target.dataset.sectionId;
+          if (id) {
+            intersectionRatios.current[id] = entry.isIntersecting
+              ? entry.intersectionRatio
+              : 0;
           }
         });
+
+        // Find section with highest ratio from ALL tracked sections
+        let bestSection = null;
+        let bestRatio = 0;
+
+        sectionIds.forEach((id) => {
+          const ratio = intersectionRatios.current[id];
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestSection = id;
+          }
+        });
+
+        if (bestSection) {
+          setActiveSection(bestSection);
+        } else {
+          // Fallback: no section visible, find closest to viewport top
+          let closestSection = null;
+          let closestDistance = Infinity;
+
+          sectionIds.forEach((id) => {
+            const ref = sectionRefs[id];
+            if (ref.current) {
+              const rect = ref.current.getBoundingClientRect();
+              const distance = Math.abs(rect.top);
+              if (distance < closestDistance) {
+                closestDistance = distance;
+                closestSection = id;
+              }
+            }
+          });
+
+          if (closestSection) {
+            setActiveSection(closestSection);
+          }
+        }
       },
       {
-        threshold: 0.4,
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+        rootMargin: "-10% 0px -10% 0px",
       },
     );
 
