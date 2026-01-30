@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import ButtonSection from "./ButtonSection.jsx";
 
-function Footer({ github_link, linkedin_link }) {
+function Footer({ githubLink, linkedinLink }) {
   return (
     <Box
       component="footer"
@@ -25,7 +25,7 @@ function Footer({ github_link, linkedin_link }) {
       >
         Be Curious.
       </Typography>
-      <ButtonSection githubLink={github_link} linkedinLink={linkedin_link} />
+      <ButtonSection githubLink={githubLink} linkedinLink={linkedinLink} />
     </Box>
   );
 }

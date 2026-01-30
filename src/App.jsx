@@ -22,27 +22,50 @@ const theme = createTheme({
     h1: {
       fontFamily: "Neuton, serif",
       fontWeight: 700,
+      fontSize: "3.5rem",
+      "@media (max-width:600px)": {
+        fontSize: "2.5rem",
+      },
     },
     h2: {
       fontFamily: "Neuton, serif",
       fontWeight: 700,
+      fontSize: "2.75rem",
+      "@media (max-width:600px)": {
+        fontSize: "2rem",
+      },
     },
     h3: {
       fontFamily: "Neuton, serif",
       fontWeight: 700,
+      fontSize: "2.25rem",
+      "@media (max-width:600px)": {
+        fontSize: "1.75rem",
+      },
     },
     h4: {
       fontFamily: "Neuton, serif",
       fontWeight: 600,
+      fontSize: "1.75rem",
+      "@media (max-width:600px)": {
+        fontSize: "1.4rem",
+      },
     },
     h5: {
       fontFamily: "Neuton, serif",
       fontWeight: 600,
       fontSize: "1.6rem",
+      "@media (max-width:600px)": {
+        fontSize: "1.3rem",
+      },
     },
     h6: {
       fontFamily: "Neuton, serif",
       fontWeight: 600,
+      fontSize: "1.25rem",
+      "@media (max-width:600px)": {
+        fontSize: "1.1rem",
+      },
     },
 
     body1: {
@@ -50,27 +73,42 @@ const theme = createTheme({
       fontWeight: 400,
       fontSize: "1.2rem",
       whiteSpace: "pre-line",
+      "@media (max-width:600px)": {
+        fontSize: "1rem",
+      },
     },
     body2: {
       fontFamily: "Nunito, system-ui, sans-serif",
       fontWeight: 400,
       fontSize: "1.05rem",
       whiteSpace: "pre-line",
+      "@media (max-width:600px)": {
+        fontSize: "0.95rem",
+      },
     },
 
     subtitle1: {
       fontFamily: "Nunito, system-ui, sans-serif",
       fontWeight: 500,
+      "@media (max-width:600px)": {
+        fontSize: "0.9rem",
+      },
     },
     subtitle2: {
       fontFamily: "Nunito, system-ui, sans-serif",
       fontWeight: 500,
+      "@media (max-width:600px)": {
+        fontSize: "0.8rem",
+      },
     },
 
     button: {
       fontFamily: "Neuton, system-ui, sans-serif",
       fontWeight: 600,
       textTransform: "none",
+      "@media (max-width:600px)": {
+        fontSize: "0.9rem",
+      },
     },
   },
 });
@@ -122,7 +160,7 @@ function App() {
       },
       {
         threshold: 0.4,
-      }
+      },
     );
 
     Object.entries(sectionRefs).forEach(([id, ref]) => {
@@ -132,7 +170,7 @@ function App() {
       }
     });
     return () => observer.disconnect();
-  });
+  }, [techWork, projects, otherExp]);
 
   useEffect(() => {
     async function loadData() {

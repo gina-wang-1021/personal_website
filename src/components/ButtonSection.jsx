@@ -3,7 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 
-function ButtonSection({ github_link, linkedin_link }) {
+function ButtonSection({ githubLink, linkedinLink }) {
   return (
     <>
       <Stack direction="row">
@@ -11,7 +11,7 @@ function ButtonSection({ github_link, linkedin_link }) {
           aria-label="linkedin"
           size="medium"
           component="a"
-          href={linkedin_link}
+          href={linkedinLink}
           target="_blank"
           rel="noopener noreferrer"
           sx={{
@@ -27,7 +27,7 @@ function ButtonSection({ github_link, linkedin_link }) {
           aria-label="github"
           size="medium"
           component="a"
-          href={github_link}
+          href={githubLink}
           target="_blank"
           rel="noopener noreferrer"
           sx={{
