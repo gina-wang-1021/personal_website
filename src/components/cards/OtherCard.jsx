@@ -1,4 +1,12 @@
-import { Typography, Card, CardContent, Stack, Link } from "@mui/material";
+import {
+  Typography,
+  Card,
+  CardMedia,
+  Box,
+  CardContent,
+  Stack,
+  Link,
+} from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 
 const CARD_BG = "#b8c6d3";
@@ -34,12 +42,34 @@ function OtherCard({ exp }) {
         },
       }}
     >
-      <CardContent
+      <Box
         sx={{
-          p: 3,
+          px: 3,
+          pb: 1,
+          pt: 3,
         }}
       >
-        <Stack spacing={1.5} mt={2}>
+        <CardMedia
+          sx={{
+            aspectRatio: "16 / 9",
+            width: "100%",
+            objectFit: "cover",
+            borderRadius: 3,
+            background: "white",
+          }}
+          component="img"
+          image={image_link}
+          title="photo"
+        />
+      </Box>
+      <CardContent
+        sx={{
+          px: 3,
+          pb: 3,
+          pt: 1,
+        }}
+      >
+        <Stack spacing={1.5}>
           <Typography variant="h5" fontWeight={600} color="inherit">
             {title}
           </Typography>
